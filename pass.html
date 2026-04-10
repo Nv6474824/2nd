@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - My Pass</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <main class="main-content">
+    <div class="page-container">
+      <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">My Passes</h1>
+          <p style="color: var(--color-text-muted);">Your active resource bookings and entry passes.</p>
+        </div>
+      </div>
+
+      <div id="passesContainer" class="passes-grid">
+        <!-- Passes injected via JS -->
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

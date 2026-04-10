@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - ID Card</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <main class="main-content">
+    <div class="page-container">
+      <div style="margin-bottom: 2rem; text-align: center;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Digital ID Card</h1>
+        <p style="color: var(--color-text-muted);">Your official campus identification.</p>
+      </div>
+
+      <div id="cardContainer">
+        <!-- Card injected via JS -->
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <button class="btn btn-outline">Save to Apple Wallet</button>
+        <button class="btn btn-outline" style="margin-left: 1rem;">Save to Google Wallet</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

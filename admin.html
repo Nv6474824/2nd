@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="page-container">
+      <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--color-danger);">Admin Dashboard</h1>
+        <p style="color: var(--color-text-muted);">System overview and resource management.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="glass-panel stat-card" style="border-top: 4px solid var(--color-primary);">
+          <p>Total Bookings Today</p>
+          <h3>142</h3>
+        </div>
+        <div class="glass-panel stat-card" style="border-top: 4px solid var(--color-success);">
+          <p>Active Passes</p>
+          <h3>87</h3>
+        </div>
+        <div class="glass-panel stat-card" style="border-top: 4px solid var(--color-warning);">
+          <p>Reported Issues</p>
+          <h3>3</h3>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="glass-panel" style="padding: 1.5rem; grid-column: 1 / -1;">
+          <h3 style="margin-bottom: 1rem;">Pending Bookings</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Resource</th>
+                  <th>User</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminBookingsTableBody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="margin-bottom: 1rem;">System Status</h3>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.875rem;">Server Load</span>
+                <span style="font-size: 0.875rem; color: var(--color-success);">24%</span>
+              </div>
+              <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: 24%; background: var(--color-success);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.875rem;">Database Capacity</span>
+                <span style="font-size: 0.875rem; color: var(--color-warning);">68%</span>
+              </div>
+              <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: 68%; background: var(--color-warning);"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.875rem;">API Rate Limit</span>
+                <span style="font-size: 0.875rem; color: var(--color-primary);">12%</span>
+              </div>
+              <div style="height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: 12%; background: var(--color-primary);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="margin-bottom: 1rem;">Quick Actions</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <button class="btn btn-outline" style="justify-content: flex-start;">Broadcast Announcement</button>
+            <button class="btn btn-outline" style="justify-content: flex-start;">Manage Resources</button>
+            <button class="btn btn-outline" style="justify-content: flex-start;">View Reports</button>
+            <button class="btn btn-outline" style="justify-content: flex-start; color: var(--color-danger); border-color: rgba(239,68,68,0.3);">Emergency Lockdown</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = JSON.parse(localStorage.getItem('smart-campus-storage'));
+      if (!state || !state.user || state.user.role !== 'Admin') {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

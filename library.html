@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="page-container">
+      <div class="resource-header">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1470&auto=format&fit=crop" alt="Library">
+        <div class="overlay">
+          <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Library Study Pods</h1>
+          <p style="color: rgba(255,255,255,0.8); max-width: 600px;">Quiet, soundproof study pods equipped with power outlets, reading lights, and comfortable seating for focused work.</p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="glass-panel" style="padding: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">Select Date</h3>
+            <input type="date" id="dateSelect" style="background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); padding: 0.75rem; border-radius: 8px; color: white; width: 100%;">
+          </div>
+
+          <div class="glass-panel" style="padding: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">Available Slots</h3>
+            <select id="slotSelect" style="background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); padding: 0.75rem; border-radius: 8px; color: white; width: 100%;">
+              <option value="">Select a time slot...</option>
+              <option value="08:00 - 10:00">08:00 - 10:00</option>
+              <option value="10:00 - 12:00">10:00 - 12:00</option>
+              <option value="12:00 - 14:00">12:00 - 14:00</option>
+              <option value="14:00 - 16:00">14:00 - 16:00</option>
+              <option value="16:00 - 18:00">16:00 - 18:00</option>
+              <option value="18:00 - 20:00">18:00 - 20:00</option>
+            </select>
+          </div>
+
+          <div class="glass-panel" style="padding: 1.5rem; background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.2); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="margin-bottom: 0.25rem;">Confirm Booking</h4>
+              <p style="font-size: 0.875rem; color: var(--color-text-muted);">Select date and time to book</p>
+            </div>
+            <input type="hidden" id="resourceType" value="library">
+            <input type="hidden" id="resourceName" value="Library Study Pods">
+            <button id="bookBtn" class="btn btn-primary">Book Now</button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div class="glass-panel" style="padding: 1.5rem;">
+            <h3 style="margin-bottom: 1rem;">Details</h3>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--color-border); margin-bottom: 1rem;">
+              <span style="color: var(--color-text-muted);">Capacity</span>
+              <span style="font-weight: 500;">4 people per pod</span>
+            </div>
+            <div>
+              <span style="color: var(--color-text-muted); display: block; margin-bottom: 0.5rem;">Features</span>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span style="padding: 0.25rem 0.5rem; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 0.75rem;">Soundproof</span>
+                <span style="padding: 0.25rem 0.5rem; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 0.75rem;">Power Outlets</span>
+                <span style="padding: 0.25rem 0.5rem; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 0.75rem;">Whiteboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('dateSelect').valueAsDate = new Date();
+  </script>
+</body>
+</html>

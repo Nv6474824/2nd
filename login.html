@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.5s ease;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      padding: 2.5rem;
+      z-index: 10;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .bg-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      transition: background 0.5s ease, transform 1s ease;
+    }
+    .role-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.25rem;
+      border-radius: 12px;
+    }
+    .role-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: all 0.3s ease;
+    }
+    .role-tab.active {
+      background: var(--color-surface);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* Dynamic Theme Colors */
+    body[data-role="student"] {
+      --theme-color: var(--color-primary);
+      --theme-color-rgb: 99, 102, 241;
+    }
+    body[data-role="faculty"] {
+      --theme-color: var(--color-secondary);
+      --theme-color-rgb: 168, 85, 247;
+    }
+    body[data-role="admin"] {
+      --theme-color: var(--color-danger);
+      --theme-color-rgb: 239, 68, 68;
+    }
+
+    .theme-text { color: var(--theme-color); }
+    .theme-bg { background-color: var(--theme-color); }
+    .theme-border { border-color: var(--theme-color); }
+    
+    .login-box.theme-active {
+      border-top: 4px solid var(--theme-color);
+      box-shadow: 0 8px 32px rgba(var(--theme-color-rgb), 0.15);
+    }
+  </style>
+</head>
+<body data-role="student">
+  <div class="login-container">
+    <div class="bg-blob blob-1" style="top: -10%; left: -10%; background: rgba(var(--theme-color-rgb), 0.2);"></div>
+    <div class="bg-blob blob-2" style="bottom: -10%; right: -10%; background: rgba(var(--theme-color-rgb), 0.15);"></div>
+    
+    <div class="glass-panel login-box theme-active">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="logo-icon theme-bg" style="width: 64px; height: 64px; font-size: 2rem; margin: 0 auto 1rem; color: white;">S</div>
+        <h2>Welcome Back</h2>
+        <p style="color: var(--color-text-muted); font-size: 0.875rem;">Sign in to SmartCampus Resource Manager</p>
+      </div>
+
+      <div class="role-tabs">
+        <div class="role-tab active" data-target="student">Student</div>
+        <div class="role-tab" data-target="faculty">Faculty</div>
+        <div class="role-tab" data-target="admin">Admin</div>
+      </div>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="student@campus.edu" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn theme-bg" style="width: 100%; margin-top: 1rem; color: white; border: none;">Sign In</button>
+      </form>
+
+      <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); text-align: center; font-size: 0.75rem; color: var(--color-text-muted);">
+        <p style="margin-bottom: 0.5rem;">Demo Accounts:</p>
+        <span style="color: var(--color-primary)">student@</span> | 
+        <span style="color: var(--color-secondary)">faculty@</span> | 
+        <span style="color: var(--color-danger)">admin@</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Login Page Specific Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.role-tab');
+      const emailInput = document.getElementById('email');
+      const body = document.body;
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all
+          tabs.forEach(t => t.classList.remove('active'));
+          // Add active class to clicked
+          tab.classList.add('active');
+          
+          const role = tab.getAttribute('data-target');
+          body.setAttribute('data-role', role);
+          
+          // Update placeholder
+          if (role === 'student') emailInput.placeholder = 'student@campus.edu';
+          if (role === 'faculty') emailInput.placeholder = 'faculty@campus.edu';
+          if (role === 'admin') emailInput.placeholder = 'admin@campus.edu';
+          
+          // Auto-fill for demo purposes
+          emailInput.value = role + '@campus.edu';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

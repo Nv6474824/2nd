@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <main class="main-content">
+    <div class="page-container">
+      <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Dashboard</h1>
+        <p style="color: var(--color-text-muted);">Here's what's happening on campus today.</p>
+      </div>
+
+      <div id="dashboardStats" class="stats-grid">
+        <!-- Stats injected via JS -->
+      </div>
+
+      <div class="charts-grid">
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="margin-bottom: 1rem;">Campus Activity (Live)</h3>
+          <canvas id="activityChart" height="100"></canvas>
+        </div>
+        <div class="glass-panel" style="padding: 1.5rem; background: linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));">
+          <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🧠</span> Smart Suggestion
+          </h3>
+          <p style="color: var(--color-text-muted); font-size: 0.875rem; margin-bottom: 1.5rem; line-height: 1.5;">
+            Based on your routine, the Gym is usually less crowded at 19:00. Would you like to book a slot?
+          </p>
+          <a href="gym.html" class="btn btn-primary" style="width: 100%;">Quick Book</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if(window.location.pathname.includes('login.html')) return;
+      
+      const ctx = document.getElementById('activityChart');
+      if(ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'],
+            datasets: [{
+              label: 'Users',
+              data: [120, 350, 450, 380, 520, 600, 200],
+              borderColor: '#6366f1',
+              backgroundColor: 'rgba(99, 102, 241, 0.2)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { display: false },
+              x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
